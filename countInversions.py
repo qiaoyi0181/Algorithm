@@ -1,8 +1,7 @@
-#import numpy as np
+with open('/Users/Qiaoyi/Desktop/sc_bcc_histogram/IntegerArray.txt') as f:
+    numbers = f.readlines()
 
-#question_array = np.loadtxt('IntegerArray.txt')
-#question_array = np.loadtxt('test.txt')
-question_array = [1,3,5,2]
+numbers = [int(x.strip()) for x in numbers]
 
 count = 0
 
@@ -47,5 +46,5 @@ def countInversions(n):
                     break
     return n
 
-countInversions(question_array)
+countInversions(numbers)
 print(count)

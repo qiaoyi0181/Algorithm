@@ -3,6 +3,8 @@ with open('/Users/Qiaoyi/Desktop/sc_bcc_histogram/IntegerArray.txt') as f:
 
 numbers = [int(x.strip()) for x in numbers]
 
+#https://www.coursera.org/learn/algorithms-divide-conquer/discussions/weeks/2/threads/t8OC-gWcEee36g5uvZCkbA
+
 count = 0
 
 def countInversions(n):

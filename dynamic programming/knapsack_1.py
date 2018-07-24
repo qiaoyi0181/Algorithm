@@ -1,35 +1,28 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jul 20 16:28:25 2018
+Created on Tue Jul 24 15:49:26 2018
 
 @author: Qiaoyi
 """
 
-input_file = open('knapsack_big.txt', 'r')
-values = []
-weights = []
-
+input_file = open('knapsack1.txt', 'r')
+lines = []
 for line in input_file:
     line = line.split()
-    values.append(int(line[0]))
-    weights.append(int(line[1]))
+    lines.append([int(line[0]), int(line[1])])
     
-weight_size = weights[0]
-values = values[1:]
-weights = weights[1:]
+capacity = lines[0][0]
+items = lines[1:]
 
-def knapsack(W, weight, value, n):
-    if W == 0 or n == 0:
-        return 0
+subproblems = []
+subproblems.append([0 for cap in range(capacity+1)])
+
+for i, item in enumerate(items):
+    subproblem = []
+    for cap in range(capacity+1):
+        subproblem.append(max(subproblems[i][cap], subproblems[i][cap-item[1]]
+        +item[0] if cap-item[1] >=0 else 0))
+    subproblems.append(subproblem)
     
-    if weight[n-1] > W:
-        return knapsack(W, weight, value, n-1)
-    
-    else:
-        return max(knapsack(W, weight, value, n-1), 
-                   value[n-1]+knapsack(W-weight[n-1], weight, value, n-1))
-        
-print(knapsack(weight_size, weights, values, len(values)))
-    
-    
+print(subproblems[-1][-1])
